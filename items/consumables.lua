@@ -275,7 +275,7 @@ SMODS.Consumable {
     end
 }]]--
 
- -- Geode
+-- Geode
 SMODS.Atlas{
     key = 'atlas_btct_consumeables_Geode',
     path = 'GeodeTarot.png',
@@ -292,7 +292,8 @@ SMODS.Consumable {
         name = "Geode",
         text={
         '{C:green}#1# in #2#{} chance to add',
-        '{C:dark_edition}Antique{} or {C:dark_edition}Gemstone{}',
+        --'{C:dark_edition}Antique{} or {C:dark_edition}Gemstone{}',
+        '{C:dark_edition}Gemstone{}',
         'to a random {C:attention}Joker{}',
         },
     },
@@ -308,7 +309,7 @@ SMODS.Consumable {
             local editionless_jokers = SMODS.Edition:get_edition_cards(G.jokers, true)
 
             local eligible_card = pseudorandom_element(editionless_jokers, 'btct_Geode')
-            local edition = poll_edition('btct_Geode', nil, true, true, { 'e_btct_gemstone', 'e_btct_antique' } )
+            local edition = poll_edition('btct_Geode', nil, true, true, { 'e_btct_gemstone', 'e_btct_gemstone' } )
             eligible_card:set_edition(edition, true)
             check_for_unlock({ type = 'have_edition' })
         else
