@@ -1,0 +1,18 @@
+{
+	"id": "Batrocities",
+	"name": "Batrocities",
+	"display_name": "Batrocities",
+	"author": ["Kuraku, Floppr, Piero, Doneinone"],
+	"description": "Inside joke mod for friends",
+	"prefix": "btct",
+	"main_file": "core.lua",
+	"priority": 0,
+	"badge_colour": "7b62c1",
+	"badge_text_colour": "c4c4fb",
+	"version": "1.0.0",
+	"dependencies": [
+		"Steamodded (>=1.0.0~BETA-0323b)", 
+		"Lovely (*)", 
+		"Balatro (>=1.0.1o)"
+    ]
+}
