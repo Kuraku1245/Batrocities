@@ -469,9 +469,11 @@ SMODS.Joker{
     loc_txt = {
         name = 'Natures Touch',
         text = {
-            'Generates a {C:dark_edition}Negative{} lovers at the start of round.', 
-            '{C:spades}W{}{C:hearts}i{}{C:clubs}l{}{C:diamonds}d{} cards cannot be debuffed by suit blinds.',
-            'Scored {C:spades}w{}{C:hearts}i{}{C:clubs}l{}{C:diamonds}d{} cards give {X:red,C:white}X#1#{} Mult when scored.'
+            'Generates a {C:dark_edition}Negative{} lovers at ',
+            'the start of round. {C:spades}W{}{C:hearts}i{}{C:clubs}l{}{C:diamonds}d{} cards ', 
+            ' cannot be debuffed by suit blinds.',
+            'Scored {C:spades}w{}{C:hearts}i{}{C:clubs}l{}{C:diamonds}d{} cards give {X:red,C:white}X#1#{} ',
+            'Mult when scored.'
         }
     },
     atlas = 'NaturesTouch',
@@ -490,17 +492,17 @@ SMODS.Joker{
     config = { extra = { xmult = 1.5 } },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'btct_artcreditDoneInOne', set = 'Other'}
-		return { vars = { card.ability.extra.xmult } }
+		return { vars = { card.ability.extra.xmult, localize('m_wild') } }
 	end,
     
 	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play and not context.other_card.debuff and not context.end_of_round and
-        SMODS.has_enhancement(context.other_card, 'm_wild') then
-			return {
-				xmult = card.ability.extra.xmult,
-				card = context.other_card
-			}
-		end
+		if context.individual and context.cardarea == G.play and not context.other_card.debuff then
+            if SMODS.has_enhancement(context.other_card, 'm_wild') then
+                return {
+                    xmult = card.ability.extra.xmult
+                }
+            end
+        end
         if context.setting_blind then
             SMODS.add_card{key = 'c_lovers', edition = 'e_negative'}
         end
@@ -1707,7 +1709,7 @@ SMODS.Joker{
 		return { vars = { card.ability.extra.mult, localize('m_stone') } }
 	end,
 	calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play then
+        if context.individual and context.cardarea == G.play and not context.other_card.debuff then
             if SMODS.has_enhancement(context.other_card, 'm_stone') then
             return {
                 mult = card.ability.extra.mult
