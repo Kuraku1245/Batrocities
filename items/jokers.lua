@@ -1704,18 +1704,17 @@ SMODS.Joker{
 
     config = { extra = { mult = 5 } },
     	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult } }
+		return { vars = { card.ability.extra.mult, localize('m_stone') } }
 	end,
 	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play then
-			if SMODS.has_enhancement(context.other_card, 'm_stone') then
-				return {
-					mult = card.ability.extra.mult,
-					card = context.other_card
-				}
-			end
-		end
-	end
+        if context.individual and context.cardarea == G.play then
+            if SMODS.has_enhancement(context.other_card, 'm_stone') then
+            return {
+                mult = card.ability.extra.mult
+            }
+            end
+        end
+    end
 }
 
 -- Mosaic
