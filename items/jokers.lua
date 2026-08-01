@@ -3857,9 +3857,9 @@ SMODS.Joker {
         text = {
             '{C:green}#2# in #3#{} chance to spawn an {C:attention}Underwear{}', 
             'at start of round, otherwise this',
-            'joker destroys an existing {C:attention}Underwear{}.',
-            '{C:attention}Underwear{} to shuriken, this joker destroys',
-            'itself. This joker gains {C:mult}+#1#{} Mult per ',
+            'joker destroys an existing {C:attention}Underwear{}. If',
+            'there are no {C:attention}Underwear{} to shuriken, this joker',
+            'destroys itself. This joker gains {C:mult}+#1#{} Mult per ',
             '{C:attention}Underwear{} shurikened. If you have more than',
             '3 {C:attention}Underwear{} this joker will always shuriken.',
             '{C:inactive}(Currently {C:mult}+#4#{} {C:inactive}Mult){}'
@@ -3876,18 +3876,22 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
  
-    config = { extra = { multbase = 9, odds = 2, oddsoutoff = 3, multcurrent = 0 } },
+    config = { extra = { multbase = 9, oddsoutoff = 3, multcurrent = 0 } },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.j_btct_Underwear
-        return { vars = { card.ability.extra.multbase, card.ability.extra.odds, card.ability.extra.oddsoutoff, card.ability.extra.multcurrent } } 
+        return { vars = { card.ability.extra.multbase, (G.GAME.probabilities.normal*2), card.ability.extra.oddsoutoff, card.ability.extra.multcurrent } } 
     end,
 
     calculate = function(self, card, context)
     if context.setting_blind and not context.blueprint then
         local underweardetection = #SMODS.find_card('j_btct_Underwear')
         if underweardetection < 4 then
-            if SMODS.pseudorandom_probability(card, 'ShurikenUnderwear', card.ability.extra.odds, card.ability.extra.oddsoutoff) then
+            if SMODS.pseudorandom_probability(card, 'ShurikenUnderwear', (G.GAME.probabilities.normal*2), card.ability.extra.oddsoutoff) then
                 SMODS.add_card({key = 'j_btct_Underwear', edition = 'e_negative'})
+                return {
+                    message = 'More!',
+                    colour = G.C.FILTER
+                    }
             else
                 if next(SMODS.find_card('j_btct_Underwear')) then
                     SMODS.destroy_cards(SMODS.find_card('j_btct_Underwear')[1])
@@ -3901,6 +3905,10 @@ SMODS.Joker {
                         }})
                 else
                     SMODS.destroy_cards(card, nil, nil, true)
+                    return {
+                    message = 'Shurikened!',
+                    colour = G.C.FILTER
+                    }
                 end
             end
         else
