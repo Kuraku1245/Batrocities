@@ -2538,7 +2538,8 @@ SMODS.Joker{
     loc_txt = {
         name = 'TWO PAIR!!!',
         text = {
-            'Gain {C:money}$#1#{} if poker hand is a {C:attention}Two Pair{}.'
+            'Gain {C:money}$#1#{} if poker ',
+            'hand is a {C:attention}Two Pair{}.'
         }
     },
     atlas = 'TWOPAIR',
@@ -2731,8 +2732,10 @@ SMODS.Joker{
     loc_txt = {
         name = 'Toilet',
         text = {
-            '{X:red,C:white}X#1#{} Mult if played hand contains a {C:attention}Full House{},',
-            '{X:blue,C:white}X#2#{} Chips if played hand contains a {C:attention}Flush{}.'
+            '{X:red,C:white}X#1#{} Mult if played hand ',
+            'contains a {C:attention}Full House{},',
+            '{X:blue,C:white}X#2#{} Chips if played hand ',
+            'contains a {C:attention}Flush{}.'
         }
     },
     atlas = 'Toilet',
