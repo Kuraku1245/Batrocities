@@ -262,9 +262,9 @@ return {
             btct_string_A = 'Select features to enable:',
             btct_string_B = 'Tarot Monopoly Rate Change',
             btct_string_C = 'Planet Monopoly Rate Change',
-            btct_string_D = 'Disable Malfunction Flash',
-            btct_string_E = 'Disable 3 Spectre',
-            btct_string_Skwob = 'Nerf Skwob',
+            btct_string_D = 'Disable Malfunction Flash [WIP]',
+            btct_string_E = 'Disable 3 Spectre [WIP]',
+            btct_string_Skwob = 'Nerf Skwob [WIP]',
         },
         labels = {
             btct_gemstone = 'Gemstone',
