@@ -3390,7 +3390,7 @@ SMODS.Joker{
     unlocked = true,
     discovered = false,
     blueprint_compat = true,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = true,
     config = { extra = { xmult = 2, xmult_loss = 0.5 } },
     loc_vars = function(self, info_queue, card)
@@ -3877,7 +3877,7 @@ SMODS.Joker {
     unlocked = true,
     discovered = false,
     blueprint_compat = true,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = true,
  
     config = { extra = { multbase = 9, oddsoutoff = 3, multcurrent = 0 } },
